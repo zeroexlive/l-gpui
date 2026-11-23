@@ -1,0 +1,61 @@
+[package]
+name = "l-gpui"
+version = "0.1.0"
+edition = "2024"
+description = "A native Lark Suite desktop client in Rust + GPUI, powered by the official lark-cli"
+license = "MIT"
+authors = ["zeroexlive <84627588+zeroexlive@users.noreply.github.com>"]
+repository = "https://github.com/zeroexlive/l-gpui"
+readme = "README.md"
+default-run = "l-gpui"
+
+[lib]
+name = "lgpui_core"
+path = "src/lib.rs"
+
+[[bin]]
+name = "l-gpui"
+path = "src/main.rs"
+required-features = ["ui"]
+
+[features]
+default = ["ui"]
+ui = ["dep:gpui"]
+
+[dependencies]
+gpui = { version = "=0.2.2", optional = true }
+serde_json = "1"
+thiserror = "2"
+chrono = { version = "0.4", default-features = false, features = ["clock", "std"] }
+
+# xattr 0.2.3 (pulled in by gpui's http client) references libc::ENOATTR, which
+# recent libc releases no longer export on Linux. ENOATTR == ENODATA on Linux.
+[patch.crates-io]
+xattr = { path = "vendor/xattr" }
+
+[profile.release]
+strip = true
+lto = "thin"
+
+[package.metadata.deb]
+name = "l-gpui"
+maintainer = "zeroexlive <84627588+zeroexlive@users.noreply.github.com>"
+copyright = "2026, zeroexlive"
+license-file = ["LICENSE", "0"]
+section = "net"
+priority = "optional"
+depends = "$auto"
+recommends = "nodejs, npm"
+extended-description = """\
+l-gpui is a native Lark Suite desktop client (Messenger, Calendar, Tasks, \
+Docs, Mail, Contacts, Approvals, Minutes) written in Rust with GPUI. \
+It drives the official lark-cli, which must be installed separately: \
+  npm install -g @larksuite/cli \
+then sign in with `lark-cli config init --new` and `lark-cli auth login --recommend`."""
+assets = [
+    ["target/release/l-gpui", "usr/bin/", "755"],
+    ["packaging/l-gpui.desktop", "usr/share/applications/", "644"],
+    ["assets/l-gpui.svg", "usr/share/icons/hicolor/scalable/apps/", "644"],
+    ["assets/l-gpui-256.png", "usr/share/icons/hicolor/256x256/apps/l-gpui.png", "644"],
+    ["README.md", "usr/share/doc/l-gpui/", "644"],
+]

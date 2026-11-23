@@ -1,0 +1,6 @@
+/target
+*.env
+*.deb
+/dist
+.DS_Store
+lark-im-resources/
