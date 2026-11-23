@@ -55,8 +55,11 @@ sudo apt install ./l-gpui_0.1.0-1_amd64.deb
 or use the `l-gpui-<version>-linux-x86_64.tar.gz` archive and run `./l-gpui`.
 Verify downloads with `sha256sum -c SHA256SUMS.txt`.
 
-The app needs a GPU with Vulkan support plus X11 or Wayland
-(`libvulkan1`, `libxkbcommon-x11-0`, `libwayland-client0`; the `.deb` pulls these in).
+The app needs a GPU with Vulkan support plus X11 or Wayland. The `.deb`
+depends on the X11/xkbcommon libraries; install the Vulkan loader and a driver
+yourself if missing: `sudo apt install libvulkan1 mesa-vulkan-drivers libwayland-client0`.
+Release binaries are built on GitHub's `ubuntu-latest` runner, so they need a
+glibc at least as new as that image's; build from source on older distros.
 
 ### 3. Sign in
 

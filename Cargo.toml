@@ -45,7 +45,7 @@ license-file = ["LICENSE", "0"]
 section = "net"
 priority = "optional"
 depends = "$auto"
-recommends = "nodejs, npm"
+recommends = "nodejs, npm, libvulkan1, libwayland-client0"
 extended-description = """\
 l-gpui is a native Lark Suite desktop client (Messenger, Calendar, Tasks, \
 Docs, Mail, Contacts, Approvals, Minutes) written in Rust with GPUI. \
