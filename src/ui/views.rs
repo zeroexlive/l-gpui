@@ -468,6 +468,7 @@ impl LarkApp {
                     .into_any_element(),
             );
         }
+        let tb = self.toolbar("Calendar", format!("Agenda for the next {} day(s)", self.agenda_days), cx);
         let range = |d: i64, label: &'static str| {
             button(sid(format!("days-{d}")), label, self.agenda_days == d).on_click(cx.listener(move |this, _, _, cx| this.set_agenda_days(d, cx)))
         };
@@ -476,8 +477,7 @@ impl LarkApp {
             .flex_col()
             .flex_1()
             .child(
-                self.toolbar("Calendar", format!("Agenda for the next {} day(s)", self.agenda_days), cx)
-                    .child(range(1, "Today"))
+                tb.child(range(1, "Today"))
                     .child(range(7, "7 days"))
                     .child(range(30, "30 days")),
             )
@@ -837,6 +837,7 @@ impl LarkApp {
                     .into_any_element()
             })
             .collect();
+        let tb = self.toolbar("Approval", "Approval tasks assigned to me (open in Lark to act)".into(), cx);
         let tab = |t: Topic, label: &'static str| {
             button(sid(format!("topic-{}", t.code())), label, self.approval_topic == t).on_click(cx.listener(move |this, _, _, cx| this.set_approval_topic(t, cx)))
         };
@@ -844,7 +845,7 @@ impl LarkApp {
             .flex()
             .flex_col()
             .flex_1()
-            .child(self.toolbar("Approval", "Approval tasks assigned to me (open in Lark to act)".into(), cx).child(tab(Topic::Pending, "Pending")).child(tab(Topic::Handled, "Handled")))
+            .child(tb.child(tab(Topic::Pending, "Pending")).child(tab(Topic::Handled, "Handled")))
             .child(
                 div()
                     .id("approvals")
