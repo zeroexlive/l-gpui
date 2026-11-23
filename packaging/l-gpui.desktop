@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=l-gpui
+GenericName=Lark Suite Client
+Comment=Native Lark Suite desktop client (Rust + GPUI) powered by lark-cli
+Exec=l-gpui
+Icon=l-gpui
+Terminal=false
+Categories=Network;InstantMessaging;Office;
+Keywords=Lark;Feishu;Chat;Calendar;Mail;
+StartupWMClass=l-gpui

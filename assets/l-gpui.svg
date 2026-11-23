@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <!-- l-gpui icon: original artwork (rounded tile, speech bubble, "L"). -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4d85ff"/>
+      <stop offset="1" stop-color="#245bdb"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="240" height="240" rx="56" fill="url(#g)"/>
+  <path d="M64 72 h128 a24 24 0 0 1 24 24 v64 a24 24 0 0 1 -24 24 h-72 l-36 28 v-28 h-20 a24 24 0 0 1 -24 -24 v-64 a24 24 0 0 1 24 -24 z" fill="#ffffff"/>
+  <path d="M100 100 v60 h52" fill="none" stroke="#3370ff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
